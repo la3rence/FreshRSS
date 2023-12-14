@@ -9,7 +9,7 @@ kill_signal = "SIGINT"
 kill_timeout = "5s"
 
 [build]
-  image = "freshrss/freshrss:1.22.1"
+  image = "lawrence2018/freshrss:latest"
 
 [env]
   CRON_MIN = "*/20"
