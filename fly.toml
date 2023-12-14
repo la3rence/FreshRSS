@@ -1,0 +1,48 @@
+# fly.toml app configuration file generated for freshrss-web on 2023-11-27T19:40:22+08:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "freshrss-web"
+primary_region = "nrt"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+[build]
+  image = "freshrss/freshrss:1.22.1"
+
+[env]
+  CRON_MIN = "*/20"
+
+[[mounts]]
+  source = "freshrss_data"
+  destination = "/var/www/FreshRSS/data"
+  auto_extend_size_threshold = 0
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 80
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.tcp_checks]]
+    interval = "1m0s"
+    timeout = "3s"
+    grace_period = "2s"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
