@@ -1,10 +1,11 @@
-# FreshRSS with build in extensions
+# FreshRSS with built-in extensions
 
 This is a Docker image built from the official FreshRSS base image, which includes built-in extensions:
 
 - Image Proxy (to add a HTTP prefix URL for all images in a feed)
 - Reading Time (to add estimated reading time for a feed item)
 - GReader Redate (use published time rather than the fetching time)
+- NewsAssistant (use OpenAI API to summarize daily feed)
 
 ## Why we need this
 

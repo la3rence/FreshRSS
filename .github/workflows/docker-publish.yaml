@@ -2,8 +2,11 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches:
+    branches: 
       - main
+    paths:
+      - 'Dockerfile'
+      - 'fly.toml'
 
 env:
   IMAGE_NAME: lawrence2018/freshrss     
@@ -36,3 +39,7 @@ jobs:
         echo VERSION=$VERSION
         docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
         docker push $IMAGE_ID:$VERSION
+    - uses: superfly/flyctl-actions/setup-flyctl@master
+    - run: flyctl deploy --remote-only
+      env:
+        FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
