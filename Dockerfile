@@ -1,4 +1,4 @@
-FROM freshrss/freshrss:1.22.1
+FROM freshrss/freshrss:1.23.0
 MAINTAINER la3rence
 
 RUN apt-get update && \
@@ -14,7 +14,6 @@ RUN git clone https://github.com/FreshRSS/Extensions --depth=1 && \
 
 RUN cp -r Extensions/xExtension-ImageProxy /var/www/FreshRSS/extensions/ && \
   cp -r Extensions/xExtension-ReadingTime /var/www/FreshRSS/extensions/ && \
-  cp -r Extensions/xExtension-StickyFeeds /var/www/FreshRSS/extensions/ && \
   cp -r freshrss-greader-redate/xExtension-GReaderRedate /var/www/FreshRSS/extensions/ && \
   cp -r FreshRSS-TranslateTitlesCN/TranslateTitlesCN /var/www/FreshRSS/extensions/ && \
   mkdir -p /var/www/FreshRSS/extensions/xExtension-NewsAssistant && \
