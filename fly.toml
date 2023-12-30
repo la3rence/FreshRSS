@@ -12,7 +12,8 @@ kill_timeout = "5s"
   image = "lawrence2018/freshrss:latest"
 
 [env]
-  CRON_MIN = "*/20"
+  CRON_MIN = "*/10"
+  TZ="Asia/Shanghai"
 
 [[mounts]]
   source = "freshrss_data"
