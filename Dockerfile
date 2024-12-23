@@ -1,4 +1,4 @@
-FROM freshrss/freshrss:1.24.3
+FROM freshrss/freshrss:1.25.0
 MAINTAINER la3rence
 
 RUN apt-get update && \
