@@ -8,7 +8,7 @@ RUN apt-get update && \
 # rclone cron backup script
 COPY backup.sh /usr/local/bin/freshrss-backup.sh
 RUN chmod +x /usr/local/bin/freshrss-backup.sh && \
-    echo "0 3 * * * /usr/local/bin/freshrss-backup.sh >> /var/log/backup.log 2>&1" \
+    echo "0 3 * * * root /usr/local/bin/freshrss-backup.sh >> /var/log/backup.log 2>&1" \
     > /etc/cron.d/freshrss-backup && \
     chmod 0644 /etc/cron.d/freshrss-backup && \
     crontab /etc/cron.d/freshrss-backup
