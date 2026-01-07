@@ -10,3 +10,20 @@ This is a Docker image built from the official FreshRSS base image, which includ
 ## Why we need this
 
 FreshRSS extensions need to be available on this default path in container: `/var/www/FreshRSS/extensions`. But fly.io doesn’t support having same mount for mulitple directories, or having multiple mounts. If we try mount the parent path `/var/www/FreshRSS`, it'll led to _kernel panic_. So I want it works on fly.io when I'm only able to mount the data path with `/var/www/FreshRSS/data`. See `fly.toml` file.
+
+## Backup
+
+Using `rclone` and cron with Cloudflare R2 to backup FreshRSS data. You can choose any other target storage service.
+
+Environment vaiables 
+
+```sh
+fly secrets set \
+  RCLONE_CONFIG_R2_TYPE=s3 \
+  RCLONE_CONFIG_R2_PROVIDER=Cloudflare \
+  RCLONE_CONFIG_R2_ACCESS_KEY_ID=${YOUR_KEY_ID} \
+  RCLONE_CONFIG_R2_SECRET_ACCESS_KEY=${YOUR_SECRET_KEY} \
+  RCLONE_CONFIG_R2_ENDPOINT=https://${YOUR_ACCOUNT}.r2.cloudflarestorage.com \
+  RCLONE_CONFIG_R2_REGION=auto
+fly secrets set RCLONE_REMOTE="r2:backup/freshrss"
+```
