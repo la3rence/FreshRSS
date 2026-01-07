@@ -2,8 +2,16 @@ FROM freshrss/freshrss:1.28.0
 LABEL maintainer="la3rence"
 
 RUN apt-get update && \
-    apt-get install -y git && \
+    apt-get install -y git rclone && \
     rm -rf /var/lib/apt/lists/*
+
+# rclone cron backup script
+COPY backup.sh /usr/local/bin/freshrss-backup.sh
+RUN chmod +x /usr/local/bin/freshrss-backup.sh && \
+    echo "0 3 * * * /usr/local/bin/freshrss-backup.sh >> /var/log/backup.log 2>&1" \
+    > /etc/cron.d/freshrss-backup && \
+    chmod 0644 /etc/cron.d/freshrss-backup && \
+    crontab /etc/cron.d/freshrss-backup
 
 WORKDIR /tmp
 
