@@ -2,14 +2,15 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: 
+    branches:
       - main
     paths:
       - 'Dockerfile'
       - 'fly.toml'
+      - 'backup.sh'
 
 env:
-  IMAGE_NAME: lawrence2018/freshrss     
+  IMAGE_NAME: lawrence2018/freshrss
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
