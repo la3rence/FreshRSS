@@ -13,17 +13,5 @@ FreshRSS extensions need to be available on this default path in container: `/va
 
 ## Backup
 
-Using `rclone` and cron with Cloudflare R2 to backup FreshRSS data. You can choose any other target storage service.
-
-Environment vaiables 
-
-```sh
-fly secrets set \
-  RCLONE_CONFIG_R2_TYPE=s3 \
-  RCLONE_CONFIG_R2_PROVIDER=Cloudflare \
-  RCLONE_CONFIG_R2_ACCESS_KEY_ID=${YOUR_KEY_ID} \
-  RCLONE_CONFIG_R2_SECRET_ACCESS_KEY=${YOUR_SECRET_KEY} \
-  RCLONE_CONFIG_R2_ENDPOINT=https://${YOUR_ACCOUNT}.r2.cloudflarestorage.com \
-  RCLONE_CONFIG_R2_REGION=auto
-fly secrets set RCLONE_REMOTE="r2:backup/freshrss"
-```
+Using `rclone` and `cron` with Cloudflare R2 to backup FreshRSS data. You can choose any other target storage service.
+Before cron running, a `rclone.conf` file under `/var/www/FreshRSS/data` is required.

@@ -1,18 +1,28 @@
 #!/bin/sh
 set -eu
 
-DATE=$(date +%F)
-BASE=/var/www/FreshRSS
-# RCLONE_CONF="$BASE/data/rclone.conf"
-TMP=/tmp
-ARCHIVE="$TMP/freshrss-$DATE.tar.gz"
-LOCK="/tmp/freshrss-backup.lock"
+# customize rclone config
+RCLONE_CONF="$BASE/data/rclone.conf"
+# change you target path
+RCLONE_REMOTE="r2:backup/freshrss"
+
+# just a debug
+printenv | grep -i RCLONE
 
 log() {
   echo "[$(date '+%F %T')] $*"
 }
 
-printenv | grep -i RCLONE
+if [ ! -f "$RCLONE_CONF" ]; then
+  log "ERROR: rclone config not found at $RCLONE_CONF"
+  exit 1
+fi
+
+DATE=$(date +%F)
+BASE=/var/www/FreshRSS
+TMP=/tmp
+ARCHIVE="$TMP/freshrss-$DATE.tar.gz"
+LOCK="/tmp/freshrss-backup.lock"
 
 # Prevent concurrent executions
 if [ -e "$LOCK" ]; then
