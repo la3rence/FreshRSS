@@ -50,10 +50,11 @@ log "3. Local checksum (sha256): $LOCAL_SUM"
 log "4. Uploading archive to remote: $RCLONE_REMOTE"
 rclone copy "$ARCHIVE" "$RCLONE_REMOTE" \
   --retries 2 \
-  --low-level-retries 10
+  --low-level-retries 10 \
+  --config "$RCLONE_CONF"
 
 REMOTE_FILE="$(basename "$ARCHIVE")"
-if rclone ls "$RCLONE_REMOTE" | grep -q "$REMOTE_FILE"; then
+if rclone ls "$RCLONE_REMOTE" --config "$RCLONE_CONF" | grep -q "$REMOTE_FILE"; then
   log "5. Remote file presence verified: $REMOTE_FILE"
 else
   log "5. ERROR: Remote file not found after upload."
