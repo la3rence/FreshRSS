@@ -1,6 +1,7 @@
 #!/bin/sh
 set -eu
 
+BASE=/var/www/FreshRSS
 # customize rclone config
 RCLONE_CONF="$BASE/data/rclone.conf"
 # change you target path
@@ -19,7 +20,6 @@ if [ ! -f "$RCLONE_CONF" ]; then
 fi
 
 DATE=$(date +%F)
-BASE=/var/www/FreshRSS
 TMP=/tmp
 ARCHIVE="$TMP/freshrss-$DATE.tar.gz"
 LOCK="/tmp/freshrss-backup.lock"
