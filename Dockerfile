@@ -2,7 +2,7 @@ FROM freshrss/freshrss:1.28.0
 LABEL maintainer="la3rence"
 
 RUN apt-get update && \
-    apt-get install -y git rclone && \
+    apt-get install -y git vim rclone && \
     rm -rf /var/lib/apt/lists/*
 
 # rclone cron backup script

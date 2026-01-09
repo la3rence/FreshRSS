@@ -3,6 +3,7 @@ set -eu
 
 DATE=$(date +%F)
 BASE=/var/www/FreshRSS
+# RCLONE_CONF="$BASE/data/rclone.conf"
 TMP=/tmp
 ARCHIVE="$TMP/freshrss-$DATE.tar.gz"
 LOCK="/tmp/freshrss-backup.lock"
@@ -10,6 +11,8 @@ LOCK="/tmp/freshrss-backup.lock"
 log() {
   echo "[$(date '+%F %T')] $*"
 }
+
+printenv | grep -i RCLONE
 
 # Prevent concurrent executions
 if [ -e "$LOCK" ]; then
