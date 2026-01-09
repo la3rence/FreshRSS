@@ -8,7 +8,7 @@ RCLONE_CONF="$BASE/data/rclone.conf"
 RCLONE_REMOTE="r2:backup/freshrss"
 
 # just a debug
-printenv | grep -i RCLONE
+printenv | grep -i RCLONE || true
 
 log() {
   echo "[$(date '+%F %T')] $*"
