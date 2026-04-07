@@ -40,6 +40,10 @@ jobs:
         echo VERSION=$VERSION
         docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
         docker push $IMAGE_ID:$VERSION
+        # Tag with current date
+        DATE_TAG=$(date +%Y%m%d)
+        docker tag $IMAGE_NAME $IMAGE_ID:$DATE_TAG
+        docker push $IMAGE_ID:$DATE_TAG
     - uses: superfly/flyctl-actions/setup-flyctl@master
     - run: flyctl deploy --remote-only
       env:
