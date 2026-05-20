@@ -1,4 +1,4 @@
-FROM freshrss/freshrss:1.29.0
+FROM freshrss/freshrss:1.29.1
 LABEL maintainer="la3rence"
 
 RUN apt-get update && \
