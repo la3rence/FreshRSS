@@ -39,11 +39,11 @@ kill_timeout = "30s"
     soft_limit = 20
 
   [[services.tcp_checks]]
-    interval = "1m0s"
-    timeout = "3s"
-    grace_period = "2s"
+    interval = "2m0s"
+    timeout = "5s"
+    grace_period = "5s"
 
 [[vm]]
   cpu_kind = "shared"
   cpus = 1
-  memory_mb = 512
+  memory_mb = 1024
