@@ -1,4 +1,4 @@
-FROM ghcr.io/freshrss/freshrss:1.30.4
+FROM ghcr.io/freshrss/freshrss:1.31.0
 LABEL maintainer="la3rence"
 
 RUN apt-get update && \
